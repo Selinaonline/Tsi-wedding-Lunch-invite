@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tsion & Dave Wedding</title>
+
+    <style>
+    * {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+      .verse {
+        width: 100%;
+        max-width: 800px;
+        height: 200px;
+        display: block;
+        margin: 0 auto;
+      }
+
+     .background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.background img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+      .back {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .overlay {
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px;
+}
+      .greet-01 {
+        width: 100%;
+        max-width:700px;
+        height: auto;
+        display:block;
+         margin: auto;
+      }
+
+      .our-story {
+        padding: 80px 20px 40px;
+        text-align: center;
+      }
+
+      .storyy {
+        font-size: 50px;
+        font-weight: bold;
+        color: rgb(114, 164, 114);
+       
+      }
+      .story-description {
+  max-width:700px;
+  margin:auto;
+  color:#506345;
+  font-size:18px;
+  line-height:1.7;
+}
+
+
+      .thumb {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      .gallery {
+        width: 90%;
+        max-width: 800px;
+        margin: 150px auto 0;
+
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 200px 200px;
+        gap: 10px;
+      }
+      .gallery img{
+        background:#eee;
+      }
+
+      .big-box {
+        grid-row: span 2;
+      }
+
+      .big,
+      .small {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .small-box {
+        position: relative;
+      }
+
+      .more {
+        position: absolute;
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.55);
+        color: white;
+
+        font-size: 45px;
+        font-weight: bold;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 12px;
+        cursor: pointer;
+
+        z-index: 5;
+      }
+      .side {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .bottom-small img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      /* VIEWER (FIX ADDED) */
+      #viewer {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+      }
+      .viewer-track {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .viewer-track img {
+        width: 100vw;
+        height: 80vh;
+        object-fit: contain;
+        flex: 0 0 100vw;
+        scroll-snap-align: center;
+         user-select:none;
+      }
+      .viewer-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .viewer-track img.active {
+       
+        opacity: 1;
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+        z-index: 9999;
+      }
+      #viewer {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+      }
+      #fullCountdown {
+         display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 26px;
+  color: #506345;
+  margin-top: 50px;
+  width: 100%;
+      }
+
+      .title {
+         font-family: "Playfair Display", serif;
+  font-size: 38px;
+  margin-bottom: 20px;
+  color: #506345;
+  text-align:center;
+  margin-top:150px;
+      }
+
+      /* COUNTDOWN */
+      .countdown {
+        font-size: 26px;
+        color: #e2a919;
+        margin-top: 80px;
+      }
+
+      .secret-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+        opacity: 0.9;
+      }
+      .timeline {
+        position: relative;
+        max-width: 600px;
+        margin: auto;
+        padding: 40px 0;
+      }
+
+      /* vertical line (now left side instead of center) */
+      .timeline::before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background: #506345;
+        top: 0;
+        bottom: 0;
+        left: 20px; /* 👈 THIS is the key change */
+      }
+      .t-item {
+        width: 100%;
+        padding-left: 60px; /* space from line */
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+   .t-item .content {
+    width: 100%;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.5;
+
+    min-height: 90px;
+    margin-left: 20px;
+    padding: 15px;
+
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid #506345;
+    backdrop-filter: blur(8px);
+}
+      .t-item .content span {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+      /* DOT */
+      .dot {
+        width: 14px;
+        margin-right: 20px;
+        height: 14px;
+        background: #506345;
+        border-radius: 50%;
+        position: absolute;
+        top: 25px;
+        z-index: 2;
+        box-shadow: 0 0 10px #506345;
+      }
+
+      /* CALENDAR */
+      .calendar {
+        display: inline-block;
+        width: 400px;
+        padding: 20px;
+        border: 2px solid #2e2d2b;
+        border-radius: 15px;
+        font-size: 21px;
+        background-color: black;
+        color: black;
+      }
+      .month,
+      .weekdays,
+      .days {
+        color: rgb(6, 6, 6);
+        font-size: 25px;
+      }
+      .calendar-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      .calendar {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 20px;
+        width: 320px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .month {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #506345;
+      }
+
+      .weekdays,
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        font-size: 12px;
+      }
+
+      .weekdays div {
+        opacity: 0.7;
+        padding: 5px 0;
+      }
+
+      .days div {
+        padding: 8px 0;
+        margin: 2px;
+        border-radius: 8px;
+      }
+
+      /* highlight wedding day */
+      .wedding-day {
+        background: #506345;
+        color: #0b0b0b;
+        font-weight: bold;
+      }
+      .location span{
+    display:block;
+    font-size:15px;
+    color:#506345;
+}
+      .Location {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 8px;
+      }
+      .map-button {
+    display:inline-block;
+    margin-top:5px;
+    color:#506345;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+      .title-L {
+        font-size: 40px;
+        margin-bottom: 40px;
+        color:#506345
+        font-weight: bold;
+      }
+      .map {
+        height: 350px;
+        width: 90%;
+        max-width: 700px;
+      }
+      .map-button:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+      /* RSVP */
+      .btn {
+        padding: 12px 25px;
+        border: 1px solid #506345;
+        color: #506345;
+        background: transparent;
+        cursor: pointer;
+      }
+      .t-item {
+    position: relative;
+}
+
+.event-location {
+      width: 100%;
+    text-align: right;
+     font-weight: 600;
+    margin-top: 8px;
+    margin-right: 10px;
+    font-size: 17px;
+    color: #506345;
+}
+
+.map-button {
+    color: #506345;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+      .confirmation {
+        font-size: 18px;
+        margin-bottom: 20px;
+        margin-left: 150px;
+        color: #444;
+      }
+      .btn:hover {
+        background: #506345;
+        color: black;
+      }
+.rsvp-box {
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+}
+      .rsvp-box input,
+      .rsvp-box textarea {
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+      }
+     .rsvp-attend {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+      textarea {
+        min-height: 100px; 
+      }
+   .rsvp-attend .title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 35px;
+  font-style: italic;
+  color: #506345;
+  text-align: center;
+  letter-spacing: 1px;
+
+  margin: 60px 20px 40px;
+  max-width: 500px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+
+  margin-top: 25px;
+  width: 100%;
+}
+
+.row label {
+  display: flex;
+  align-items: center;
+
+  width: 50%;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+
+  color: #506345;
+}
+
+.row input[type="radio"] {
+  margin-right: 10px;
+
+}
+      .secret-box {
+        margin-top: 15px;
+        padding: 20px;
+        border-radius: 15px;
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        backdrop-filter: blur(10px);
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.6s ease;
+      }
+
+      .secret-box.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .seal {
+        font-size: 14px;
+        color: #506345;
+        margin-bottom: 10px;
+        animation: glow 1.5s infinite alternate;
+      }
+
+      .secret-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+        opacity: 0.9;
+      }
+      .timeline {
+        position: relative;
+        max-width: 600px;
+        margin: auto;
+        padding: 40px 0;
+      }
+      .join-line {
+        text-align: center;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+      }
+
+    
+ 
+  .verse{
+    width:90%;
+    max-width:700px;
+    margin:40px auto 30px;
+    text-align:center;
+}
+
+.verse p{
+    font-family:"Cormorant Garamond", serif;
+    font-size:30px;
+    font-style:italic;
+    color:rgb(114,164,114);
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+.verse span{
+    display:block;
+    font-family:"Cormorant Garamond", serif;
+    font-size:20px;
+    color:rgb(114,164,114);
+    letter-spacing:2px;
+}  
+
+.time-lineall {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 9px;
+    width: 100%;
+}
+
+.timeline,
+.amharic-timeline {
+    flex: 1;
+    max-width: 400px;
+}   
+.amargna{
+  color:#506345;
+  font-size:30px;
+}
+      .amharic-timeline {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+        
+}
+
+.am-item {
+    position: relative;
+    width: 100%;
+    padding-left: 40px;
+    padding-left: 45px;
+    margin-bottom: 35px;
+}
+
+
+.am-dot {
+    position: absolute;
+    left: 15px;
+    top: 30px;
+
+    width: 14px;
+    height: 14px;
+    background: #506345;
+    border-radius: 50%;
+}
+.map-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+    padding: 8px 18px;
+
+    border: 1px solid #506345;
+    border-radius: 20px;
+
+    color: #506345;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+.map-button:hover {
+    background: #506345;
+    color: white;
+}
+
+
+.am-box {
+    width: 100%;
+    min-height: 100px;
+     color:#506345;
+    padding: 20px;
+
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #506345;
+    border-radius: 15px;
+
+    font-family: "Noto Sans Ethiopic", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+
+ 
+}
+
+
+.am-box span {
+    display: block;
+    margin-top: 10px;
+    font-size: 17px;
+  color:#506345;
+}
+
+
+.am-location {
+    text-align: center;
+    margin-top: 12px;
+  font-weight:600;
+  text-decoration:underline;
+    font-size: 25px;
+    color: #506345;
+     font-family: "Noto Sans Ethiopic", sans-serif;
+}
+@media (max-width:600px){
+
+.verse{
+    width:92%;
+    margin-top:25px;
+  margin-bottom:0;
+}
+
+.verse p{
+    font-size:22px;
+    line-height:1.5;
+}
+
+.verse span{
+    font-size:16px;
+}
+
+}
+
+@media (max-width: 768px) {
+    .time-lineall {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    
+    .t-item {
+      width: 100%;
+      padding-left: 35px;
+      padding-right: 15px;
+  }
+
+  .t-item .content {
+      width: 100%;
+      margin-left: 0;
+     min-width:0;
+      font-size: 20px;
+      padding: 15px;
+  }
+}      
+
+      .greet {
+        margin-top: 80px;
+      }
+      .closing-line {
+        margin-bottom: 120px;
+      }
+      /* Bride on the left */
+
+
+
+  
+
+
+      .success-message {
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 12px;
+        background: #506345;
+        color: #f7faf4;
+        text-align: center;
+        font-size: 18px;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .success-message.show {
+        display: block;
+      }
+    
+
+.rsvp-attend .title {
+
+  font-size: 30px;
+
+  line-height: 1.2;
+
+  margin:50px auto 30px;
+
+  max-width:320px;
+}
+
+
+.row {
+
+  gap:10px;
+
+}
+
+
+.row label {
+
+  width:50%;
+
+  font-size:17px;
+
+}
+.foot {
+  height: 250px;
+  background-color: #506345;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+
+.closing {
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 80px;
+}
+
+
+.contact-box {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-family:"Cormorant Garamond", serif;
+  font-style:italic;
+  font-weight:600;
+  font-size:20px;
+}
+
+
+.contact-box h3 {
+  margin-bottom:15px;
+}
+
+.fa-instagram {
+   border-radius: 7px;
+    height: 18px;
+ 
+}
+.contact-box a {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  color:rgb(24,23,23);
+  margin:5px 0;
+}
+
+
+.social-icon {
+  width:18px;
+  height:18px;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+
+.made {
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+
+    white-space: nowrap;
+    width: max-content;
+    font-size: 12px;
+ 
+}
+   
+   
+@media(max-width:600px){
+  .foot {
+    height: 190px;
+  }
+  .closing{
+       display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:15px;
+  }
+
+  .contact-box{
+    font-size:15px;
+    margin: 2px 0;
+    gap: 5px;
+  }
+
+ .made{
+     position:absolute;
+    bottom:5px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:10px;
+    white-space:nowrap;
+  }
+
+}
+
+
+      @media (max-width: 600px) {
+        .storyy {
+          font-size: 35px;
+          margin-left: 0;
+        }
+
+        .title {
+          font-size: 32px;
+        }
+
+        .map {
+          width: 95%;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 600px) {
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .container,
+  section {
+    width: 100%;
+    padding: 0 15px;
+  }
+
+
+
+   @media(max-width:600px){
+
+  #fullCountdown{
+    font-size:18px;
+    white-space:nowrap;
+    transform:scale(0.9);
+  }
+
+  .title{
+    font-size:30px;
+  }
+
+}   
+        @media(max-width:600px){
+
+  .am-location {
+      font-size:16px;
+  }
+
+  .map-button {
+      font-size:16px;
+      padding:8px 16px;
+  }
+
+}
+        @media(max-width:600px){
+
+    .amharic-timeline {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .am-item {
+        padding-left: 25px;
+    }
+
+    .am-box {
+        width: 100%;
+    }
+}
+    
+    </style>
+  </head>
+
+  <body>
+<audio 
+id="bgMusic"
+src="lamesginih-zema-4-christ.m4a.m4a"
+loop>
+
+</audio>
+  
+
+    <div class="background">
+      <img class="back" src="Tsion (3).png" />
+    </div>
+
+  
+<div class="verse">
+  <p>
+    “This is the day which the LORD hath made;<br>
+    we will rejoice and be glad in it.”
+  </p>
+  <span>Psalms 118:24</span>
+</div>
+
+
+
+     
+ 
+    <div class="greet"><img class="greet-01" src="Tsion (4).png" /></div>
+
+    <!-- STORY SECTION -->
+    <section class="our-story">
+      <h2 class="storyy">Our Story</h2>
+      <p class="story-description">
+       
+      
+        From the first moment we met to this beautiful journey, every step has
+        been a memory we cherish. This is a small glimpse of our story together.
+      </p>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section style="padding: 100px 20px">
+      <!-- FIRST MEET -->
+      <div
+        style="
+          max-width: 1000px;
+          margin: auto;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 60px;
+          margin-bottom: 100px;
+        "
+      >
+           <div style="flex: 1; min-width: 280px">
+          <h2 style="color: rgb(114, 164, 114); font-size: 32px">
+            🌍 First Meet
+          </h2>
+          <p style="font-size: 18px; line-height: 1.6; color: #506345">
+            It all started from a simple moment that turned into something
+            meaningful.
+          </p>
+        </div>
+        <!-- IMAGE -->
+        <div style="flex: 1; min-width: 280px">
+          <img
+            src="firstmeet.jpg"
+            style="
+              width: 100%;
+              height: 380px;
+              object-fit: cover;
+              border-radius: 18px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            "
+          />
+        </div>
+
+        <!-- TEXT -->
+     
+      </div>
+
+      <!-- GROWING TOGETHER -->
+      <div
+        style="
+          max-width: 1000px;
+          margin: auto;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 60px;
+          flex-direction: row-reverse;
+          margin-bottom: 100px;
+        "
+      >
+           <div style="flex: 1; min-width: 280px">
+          <h2 style="color: rgb(114, 164, 114); font-size: 32px">
+            ❤️ Growing Together
+          </h2>
+          <p style="font-size: 18px; line-height: 1.6; color: #506345">
+            We learned, laughed, and built something stronger every day.
+          </p>
+        </div>
+        <!-- IMAGE -->
+        <div style="flex: 1; min-width: 280px">
+          <img
+            src="photo_2026-07-22_09-44-31.jpg"
+            style="
+              width: 100%;
+              height: 380px;
+              object-fit: cover;
+              border-radius: 18px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            "
+          />
+        </div>  
+
+        <!-- TEXT -->
+     
+      </div>
+
+      <!-- PROPOSAL -->
+      <div
+        style="
+          max-width: 1000px;
+          margin: auto;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 60px;
+        "
+      >
+           <div style="flex: 1; min-width: 280px">
+          <h2 style="color: rgb(114, 164, 114); font-size: 32px">
+            💍 Proposal
+          </h2>
+          <p style="font-size: 18px; line-height: 1.6; color: #506345">
+            The moment everything became forever.
+          </p>
+        </div>
+        <!-- IMAGE -->
+        <div style="flex: 1; min-width: 280px">
+          <img
+            src="proposal.png"
+            style="
+              width: 100%;
+              height: 380px;
+              object-fit: cover;
+              border-radius: 18px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            "
+          />
+        </div>
+
+        <!-- TEXT -->
+     
+      </div>
+    </section>
+    <section>
+      <div class="title">Countdown To The Wedding</div>
+
+      <div id="fullCountdown"></div>
+    </section>
+    <div class="gallery">
+      <div class="big-box">
+        <img src="1.JPG" class="thumb big" data-index="0" loading="lazy" />
+      </div>
+
+      <div class="small-box">
+        <img src="2.JPG" class="thumb small" data-index="1" loading="lazy" />
+
+        <div class="more" onclick="openViewer(0)">+</div>
+      </div>
+
+      <div class="small-box">
+        <img src="3.JPG" class="thumb small" data-index="2" loading="lazy"/>
+      </div>
+    </div>
+
+    <!-- COUNTDOWN PLACEHOLDER -->
+
+    <section>
+      <section>
+     
+        <div class="title">Wedding Timeline</div>
+   <div class="time-lineall">
+        <div class="timeline">
+
+            <div class="t-item left">
+            <div class="dot"></div>
+            <div class="content">
+              🍽️ Lunch<br />
+              <span>11:00 AM - 2:00 PM</span>
+            </div>
+          </div>
+
+          <div class="t-item left">
+            <div class="dot"></div>
+            <div class="content">
+              💒 Church Program <br />
+              <span> 3:00 PM- 5:30 PM </span>
+            </div>
+          </div>
+
+          <div class="t-item right">
+            <div class="dot"></div>
+            <div class="content">
+              📸 Photos Session<br />
+              <span>5:30 PM- 6:00 PM </span>
+            </div>
+          </div>
+
+        
+        </div>
+         
+        </div>
+  <p class="amargna">የእለቱ ፕሮግራም</p>
+
+<div class="amharic-timeline">
+
+  <div class="am-item">
+    <div class="am-dot"></div>
+
+    <div class="am-box">
+      🍽️ የምሳ ፕሮግራም
+      <span>5:00 - 8:00</span>
+    </div>
+
+    <div class="am-location">
+     📍 መኖሪያ ቤት
+      <br>
+     
+    </div>
+
+  </div>
+
+  <div class="am-item">
+    <div class="am-dot"></div>
+
+    <div class="am-box">
+      💒 የቃልኪዳን ፕሮግራም
+      <span>9:00 - 11:30</span>
+    </div>
+
+    <div class="am-location">
+      📍 ገርጂ አማኑኤል ቤተክርስትያን
+    </div>
+  </div>
+
+
+  <div class="am-item">
+    <div class="am-dot"></div>
+
+    <div class="am-box">
+      📸 የፎቶ ፕሮግራም
+      <span>11:30 - 12:00</span>
+    </div>
+
+  </div>
+
+
+
+</div>
+   </div>
+   </div>
+      </section>
+    </section>
+
+    <section>
+      <section>
+        <div class="title">Save The Date</div>
+
+        <div class="calendar-wrapper">
+          <div class="calendar">
+            <div class="month">August 2026</div>
+
+            <div class="weekdays">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+
+            <div class="days">
+              <!-- empty spacing (August 2026 starts mid-week style) -->
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div class="wedding-day">1</div>
+              <div>2</div>
+              <div>3</div>
+              <div>4</div>
+              <div>5</div>
+              <div>6</div>
+              <div>7</div>
+              <div>8</div>
+              <div>9</div>
+              <div>10</div>
+              <div>11</div>
+              <div>12</div>
+              <div>13</div>
+              <div>14</div>
+              <div>15</div>
+              <div>16</div>
+              <div>17</div>
+              <div>18</div>
+              <div>19</div>
+
+              <!-- WEDDING DAY -->
+              <div>20</div>
+
+              <div>21</div>
+              <div>22</div>
+              <div>23</div>
+              <div>24</div>
+              <div>25</div>
+              <div>26</div>
+              <div>27</div>
+              <div>28</div>
+              <div>29</div>
+              <div>30</div>
+              <div>31</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <!-- MAP -->
+
+
+    <!-- RSVP -->
+    <section>
+      <section>
+        <div class="rsvp-attend">
+          <p class="title">Please confirm your attendance</p>
+        </div>
+
+        <div class="rsvp-box">
+          <input type="text" id="name" placeholder="Full Name" />
+
+          <div class="row">
+            <label>
+              <input type="radio" name="attend" value="Yes" /> Yes, I will
+              attend
+            </label>
+
+            <label>
+              <input type="radio" name="attend" value="No" /> No, I can't attend
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <input
+                type="radio"
+                name="side"
+                value="Bride"
+                onclick="checkSide()"
+              />
+              Bride Family
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="side"
+                value="Groom"
+                onclick="checkSide()"
+              />
+              Groom Family
+            </label>
+          </div>
+
+          <!-- FUN QUESTION (hidden by default) -->
+          <div id="funQuestion" class="secret-box hidden">
+            <div class="seal">🔒 Secret Question Unlocked</div>
+            <p class="secret-title">A little fun question for you 💛</p>
+
+            <p id="questionText">What is a funny moment you've had with the Bride?</p>
+
+            <input type="text" id="funAnswer" placeholder="Your answer..." />
+          </div>
+
+          <textarea
+            id="message"
+            placeholder="Message for the couple"
+          ></textarea>
+
+          <button class="btn" onclick="submitRSVP()">Submit</button>
+        </div>
+      </section>
+      <div id="successMessage" class="success-message">
+        ❤️ Thank you! Your wishes have been submitted successfully.
+      </div>
+    </section>
+    <!-- FOOTER -->
+    <section>
+      <div class="join-line">
+        <div class="title">Join Us</div>
+        <p class="closing-line">
+          We would be honored to have you with us on our special day.<br />
+          Location: Addis Ababa, Ethiopia
+        </p>
+      </div>
+    </section>
+    <div id="viewer">
+      <div class="close" onclick="closeViewer()">×</div>
+      <div class="viewer-track" id="track"></div>
+    </div>
+
+    <!-- FIX: VIEWER ADDED -->
+<div class="foot">
+
+  <div class="closing">
+
+    <div class="contact-box bride-info">
+      <h3>Bride Contact</h3>
+
+      <a href="https://www.instagram.com/tsi_meseret/">
+        <img src="insta.jpg" class="social-icon" alt="Instagram">
+        <span>@tsi_meseret</span>
+      </a>
+
+      <a href="tel:+251923112148">
+        <i class="fa-solid fa-phone social-icon"></i>
+        <span>+251923112148</span>
+      </a>
+    </div>
+
+
+    <div class="contact-box groom-info">
+      <h3>Groom Contact</h3>
+
+      <a href="https://www.instagram.com/davedc_d/">
+        <img src="insta.jpg" class="social-icon" alt="Instagram">
+        <span>@davedc_d</span>
+      </a>
+
+      <a href="tel:+251931807797">
+        <i class="fa-solid fa-phone social-icon"></i>
+        <span>+251931807797</span>
+      </a>
+    </div>
+
+
+    <p class="made">
+      © 2026 Tsion & Dave Wedding. Made with ❤️
+    </p>
+
+  </div>
+
+</div>
+
+   
+<script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCdbD2OVFGhxwKIwjReJTk01N37OsxDZ-E",
+        authDomain: "wedding-invitation-94bd4.firebaseapp.com",
+        projectId: "wedding-invitation-94bd4",
+        storageBucket: "wedding-invitation-94bd4.firebasestorage.app",
+        messagingSenderId: "408958967087",
+        appId: "1:408958967087:web:664a8b3954ab05d89f95da",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // AUDIO PLAYBACK LOGIC
+      const music = document.getElementById("bgMusic");
+      
+      // Modern browsers require a user interaction before audio plays
+  document.addEventListener("click", function startMusic(){
+
+  music.volume = 0.5;
+
+  music.play()
+  .then(()=>{
+    console.log("Music started successfully!");
+  })
+  .catch(err=>{
+    console.log("Music failed:", err);
+  });
+
+}, {once:true});    
+
+      const viewer = document.getElementById("viewer");
+      const track = document.getElementById("track");
+
+      const images = [
+        "1.JPG", "2.JPG", "3.JPG", "4.JPG", "5.JPG", 
+        "6.JPG", "7.JPG", "8.JPG", "9.JPG", "10.JPG", 
+        "11.JPG", "12.JPG", "13.JPG"
+      ];
+
+      let currentIndex = 0;
+      const gridImages = document.querySelectorAll(".thumb");
+
+      /* =========================
+         IMAGE VIEWER
+      ========================= */
+      function openViewer(index) {
+        currentIndex = index;
+        viewer.style.display = "block";
+        document.body.style.overflow = "hidden";
+        buildViewer();
+        scrollToImage(index);
+      }
+
+      function closeViewer() {
+        viewer.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      function buildViewer() {
+        track.innerHTML = "";
+        images.forEach((src, i) => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.loading = "eager";
+          if (i === currentIndex) {
+            img.classList.add("active");
+            img.loading = "eager";
+          }
+          track.appendChild(img);
+        });
+        enableScrollTracking();
+      }
+
+      function scrollToImage(index) {
+        const imgs = track.querySelectorAll("img");
+        const target = imgs[index];
+        if (!target) return;
+       target.scrollIntoView({
+  behavior: "smooth",
+  block: "nearest",
+  inline: "start"
+});
+      }
+
+      function enableScrollTracking() {
+        let timer;
+        track.onscroll = () => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            const index = Math.round(track.scrollLeft / window.innerWidth);
+            const imgs = track.querySelectorAll("img");
+            imgs.forEach(img => img.classList.remove("active"));
+            if (imgs[index]) imgs[index].classList.add("active");
+            currentIndex = index;
+          }, 100);
+        };
+      }
+
+      /* =========================
+         CLICK HANDLERS & EVENT LISTENERS
+      ========================= */
+      gridImages.forEach((img, index) => {
+        img.addEventListener("click", () => openViewer(index));
+      });
+
+      if (viewer) {
+        viewer.addEventListener("click", (e) => {
+          if (e.target === viewer) closeViewer();
+        });
+      }
+
+      /* =========================
+         COUNTDOWN
+      ========================= */
+      const weddingDate = new Date("2026-08-01T10:00:00").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        let diff = weddingDate - now;
+
+        if (diff <= 0) {
+          document.getElementById("fullCountdown").innerHTML = "🎉 The day has arrived!";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("fullCountdown").innerHTML =
+          `${days} days : ${hours} hours : ${minutes} minutes : ${seconds} seconds`;
+      }
+
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      /* =========================
+         RSVP & INTERACTION FUNCTIONS
+      ========================= */
+      function checkSide() {
+        const sideInput = document.querySelector('input[name="side"]:checked');
+        const funBox = document.getElementById("funQuestion");
+        if (!sideInput || !funBox) return;
+
+        if (sideInput.value === "Bride") {
+          funBox.classList.add("show");
+          funBox.classList.remove("hidden");
+        } else {
+          funBox.classList.remove("show");
+          setTimeout(() => {
+            funBox.classList.add("hidden");
+          }, 300);
+        }
+      }
+
+      async function submitRSVP() {
+        let name = document.getElementById("name").value;
+        let attend = document.querySelector('input[name="attend"]:checked');
+        let side = document.querySelector('input[name="side"]:checked');
+        let funAnswer = document.getElementById("funAnswer").value;
+        let message = document.getElementById("message").value;
+
+        if (name === "" || !attend || !side) {
+          alert("Please complete the required fields.");
+          return;
+        }
+
+        let rsvpData = {
+          name: name,
+          attendance: attend.value,
+          side: side.value,
+          funAnswer: funAnswer,
+          message: message,
+        };
+
+        try {
+          await addDoc(collection(db, "rsvps"), rsvpData);
+          document.getElementById("successMessage").classList.add("show");
+          document.getElementById("name").value = "";
+          document.getElementById("message").value = "";
+          document.getElementById("funAnswer").value = "";
+        } catch (error) {
+          console.error("Error saving RSVP:", error);
+          alert("Something went wrong. Please try again.");
+        }
+      }
+
+      // CRITICAL FIX: Expose functions to the window so your HTML elements can find them
+      window.openViewer = openViewer;
+      window.closeViewer = closeViewer;
+      window.checkSide = checkSide;
+      window.submitRSVP = submitRSVP;
+    </script>
+  </body>
+</html>    
+  </body>
+</html>
